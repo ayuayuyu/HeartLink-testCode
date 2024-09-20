@@ -1,0 +1,95 @@
+import React, { useEffect, useState, useRef } from "react";
+import { useSearchParams } from "react-router-dom";
+import ReconnectingWebSocket from "reconnecting-websocket";
+import { Container, Input, Button, List, ListItem } from "@chakra-ui/react";
+
+function Room() {
+  const [searchParams] = useSearchParams();
+  const name = searchParams.get("name") || "";
+  const roomId = searchParams.get("roomId") || "";
+
+  const [messages, setMessages] = useState<string[]>([]);
+  const [message, setMessage] = useState<string>("");
+  const socketRef = React.useRef<ReconnectingWebSocket>();
+
+  useEffect(() => {
+    const websocket = new ReconnectingWebSocket(
+      `wss://hartlink-websocket-api.onrender.com/ws/${roomId}`
+    );
+    socketRef.current = websocket;
+
+    //データの受信をする
+    const onMessage = (event: MessageEvent<string>) => {
+      setMessages((prev) => [...prev, event.data]);
+    };
+    websocket.addEventListener("message", onMessage);
+
+    // #3.useEffectのクリーンアップの中で、WebSocketのクローズ処理を実行
+    return () => {
+      websocket.close();
+      websocket.removeEventListener("message", onMessage);
+    };
+  }, [roomId]);
+
+  const sendMessage = () => {
+    if (message.trim() && socketRef.current) {
+      socketRef.current.send(`${name}: ${message}`);
+      setMessage("");
+    }
+  };
+
+  interface User {
+    name: string;
+    email: string;
+  }
+
+  const send = () => {
+    const [user, setUser] = useState<string>("");
+    setUser("1234");
+
+    const send = () => {
+      console.log("ただいま、メールを送信してます", user);
+
+      fetch("https://hartlink-websocket-api.onrender.com/hartbeat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("ネットワーク応答が正常ではありません");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    };
+
+    return (
+      <Container>
+        <Input
+          value={message}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setMessage(e.target.value)
+          }
+          placeholder="Message"
+        />
+        <Button onClick={send}>Send</Button>
+        <Button onClick={sendMessage}>SendMS</Button>
+        <List>
+          {messages.map((msg, index) => (
+            <ListItem key={index}>{msg}</ListItem>
+          ))}
+        </List>
+      </Container>
+    );
+  };
+}
+
+export default Room;
