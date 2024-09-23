@@ -7,8 +7,10 @@ const Request = () => {
     const data = { heartRate: test }; // dataを正しい形式で設定
 
     console.log("ただいま、メールを送信してます", data);
+    const url1 = "http://127.0.0.1:8000/data";
+    const url = "https://hartlink-websocket-api.onrender.com/data";
 
-    fetch("http://127.0.0.1:8000/data", {
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,14 +31,14 @@ const Request = () => {
       });
   };
 
-  let reset = "0";
+  let reset = "0.0";
 
   const resend = () => {
     const data = { value: reset }; // dataを正しい形式で設定
 
     console.log("ただいま、メールを送信してます", data);
 
-    fetch("http://127.0.0.1:8000/reset", {
+    fetch("https://hartlink-websocket-api.onrender.com/reset", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -60,12 +62,12 @@ const Request = () => {
   let max = "0";
 
   const maxsend = () => {
-    fetch("http://127.0.0.1:8000/max", {
+    fetch("https://hartlink-websocket-api.onrender.com/max", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify("0"),
+      body: JSON.stringify("0.0"),
     })
       .then((response) => {
         if (!response.ok) {
@@ -84,6 +86,7 @@ const Request = () => {
     <>
       <Button onClick={send}>リクエスト</Button>
       <Button onClick={resend}>resetリクエスト</Button>
+      <Button onClick={maxsend}>resetリクエスト</Button>
     </>
   );
 };
