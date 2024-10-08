@@ -1,18 +1,21 @@
 import { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import ReconnectingWebSocket from "reconnecting-websocket";
-import { Container, Input, Button, List, ListItem } from "@chakra-ui/react";
-import Rate from "./HeartRateAnimation";
+// ESM
+import { destr } from "destr";
+
+import { HeartRate } from "../types/type";
 
 const WebSocket = () => {
   const [searchParams] = useSearchParams();
-  const name = searchParams.get("name") || "";
+  // const name = searchParams.get("name") || "";
   const roomId = searchParams.get("roomId") || "";
 
-  const url1 = `ws://127.0.0.1:8000/ws/${roomId}`;
-  const url = `wss://hartlink-websocket-api.onrender.com/ws/${roomId}`;
+  // const url1 = `ws://127.0.0.1:8000/ws/${roomId}`;
+  const url = `wss://hartlink-api.onrender.com/ws/${roomId}`;
 
-  const [heartRate, setheartRate] = useState<string>("");
+  const [heartRate, setheartRate] = useState<HeartRate>();
+  // const [heartRate, setheartRate] = useState<string>(" ");
   const socketRef = useRef<ReconnectingWebSocket>();
 
   useEffect(() => {
@@ -26,9 +29,11 @@ const WebSocket = () => {
     };
 
     socketRef.current.onmessage = (event) => {
+      // const heart = event.data.json();
       console.log("HeartRate", event.data);
-      setheartRate(event.data);
-      Rate(event.data);
+      setheartRate(destr(event.data));
+      // ここのログだとundefinedになってしまう
+      console.log("heartRate: ", heartRate?.heartRate1);
     };
 
     return () => {
@@ -50,7 +55,12 @@ const WebSocket = () => {
   return (
     <>
       <h1>Hellow WebSocket</h1>
-      <p>心拍数: {heartRate}</p>
+      <p>
+        心拍数: {heartRate?.id1}:{heartRate?.heartRate1}
+      </p>
+      <p>
+        心拍数: {heartRate?.id2}:{heartRate?.heartRate2}
+      </p>
     </>
   );
 };
