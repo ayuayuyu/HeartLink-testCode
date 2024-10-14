@@ -11,7 +11,7 @@ const WebSocket = () => {
   // const name = searchParams.get("name") || "";
   const roomId = searchParams.get("roomId") || "";
 
-  // const url1 = `ws://127.0.0.1:8000/ws/${roomId}`;
+  // const url = `ws://127.0.0.1:8000/ws/${roomId}`;
   const url = `wss://hartlink-api.onrender.com/ws/${roomId}`;
 
   const [heartRate, setheartRate] = useState<HeartRate>();

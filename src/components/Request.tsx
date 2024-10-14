@@ -3,7 +3,7 @@ import { Button } from "@chakra-ui/react";
 const Request = () => {
   const sendId1 = () => {
     const device = { id: "ayumu" };
-    // const url1 = "http://127.0.0.1:8000/id";
+    // const url = "http://127.0.0.1:8000/id";
     const url = "https://hartlink-api.onrender.com/id";
 
     fetch(url, {
@@ -29,7 +29,7 @@ const Request = () => {
   };
   const sendId2 = () => {
     const device = { id: "inoue" };
-    // const url1 = "http://127.0.0.1:8000/id";
+    // const url = "http://127.0.0.1:8000/id";
     const url = "https://hartlink-api.onrender.com/id";
 
     fetch(url, {
@@ -57,7 +57,7 @@ const Request = () => {
     const data = { status: "ok" }; // dataを正しい形式で設定
 
     console.log("ただいま、メールを送信してます", data);
-    // const url1 = "http://127.0.0.1:8000/status";
+    // const url = "http://127.0.0.1:8000/status";
     const url = "https://hartlink-api.onrender.com/status";
 
     fetch(url, {
@@ -85,7 +85,7 @@ const Request = () => {
     const data = { heartRate: "7.8", id: "ayumu" }; // dataを正しい形式で設定
 
     console.log("ただいま、メールを送信してます", data);
-    // const url1 = "http://127.0.0.1:8000/data";
+    // const url = "http://127.0.0.1:8000/data";
     const url = "https://hartlink-api.onrender.com/data";
 
     fetch(url, {
@@ -113,7 +113,7 @@ const Request = () => {
     const data = { heartRate: "9.29", id: "inoue" }; // dataを正しい形式で設定
 
     console.log("ただいま、メールを送信してます", data);
-    // const url1 = "http://127.0.0.1:8000/data";
+    // const url = "http://127.0.0.1:8000/data";
     const url = "https://hartlink-api.onrender.com/data";
 
     fetch(url, {
@@ -141,7 +141,7 @@ const Request = () => {
     const data = { status: "start" }; // dataを正しい形式で設定
 
     console.log("ただいま、メールを送信してます", data);
-    // const url1 = "http://127.0.0.1:8000/status";
+    // const url = "http://127.0.0.1:8000/status";
     const url = "https://hartlink-api.onrender.com/status";
 
     fetch(url, {
@@ -169,7 +169,7 @@ const Request = () => {
     const data = { status: "end" }; // dataを正しい形式で設定
 
     console.log("ただいま、メールを送信してます", data);
-    // const url1 = "http://127.0.0.1:8000/status";
+    // const url = "http://127.0.0.1:8000/status";
     const url = "https://hartlink-api.onrender.com/status";
 
     fetch(url, {
@@ -196,7 +196,7 @@ const Request = () => {
     const data = { status: "start" }; // dataを正しい形式で設定
 
     console.log("ただいま、メールを送信してます", data);
-    // const url1 = "http://127.0.0.1:8000/start";
+    // const url = "http://127.0.0.1:8000/start";
     const url = "https://hartlink-api.onrender.com/start";
 
     fetch(url, {
@@ -224,7 +224,7 @@ const Request = () => {
     const data = { status: "end" }; // dataを正しい形式で設定
 
     console.log("ただいま、メールを送信してます", data);
-    // const url1 = "http://127.0.0.1:8000/end";
+    // const url = "http://127.0.0.1:8000/end";
     const url = "https://hartlink-api.onrender.com/end";
 
     fetch(url, {
@@ -251,7 +251,7 @@ const Request = () => {
     const data = { status: "end" }; // dataを正しい形式で設定
 
     console.log("ただいま、メールを送信してます", data);
-    // const url1 = "http://127.0.0.1:8000/connect";
+    // const url = "http://127.0.0.1:8000/connect";
     const url = "https://hartlink-api.onrender.com/connect";
 
     fetch(url, {
@@ -278,7 +278,7 @@ const Request = () => {
     const data = { status: "end" }; // dataを正しい形式で設定
 
     console.log("ただいま、メールを送信してます", data);
-    // const url1 = "http://127.0.0.1:8000/connect";
+    // const url = "http://127.0.0.1:8000/reset";
     const url = "https://hartlink-api.onrender.com/reset";
 
     fetch(url, {
@@ -305,7 +305,7 @@ const Request = () => {
     const data = { status: "ok" }; // dataを正しい形式で設定
 
     console.log("ただいま、メールを送信してます", data);
-    // const url1 = "http://127.0.0.1:8000/connect";
+    // const url = "http://127.0.0.1:8000/ok";
     const url = "https://hartlink-api.onrender.com/ok";
 
     fetch(url, {
