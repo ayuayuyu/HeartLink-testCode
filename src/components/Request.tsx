@@ -193,18 +193,15 @@ const Request = () => {
       });
   };
   const teststart = () => {
-    const data = { status: "start" }; // dataを正しい形式で設定
-
-    console.log("ただいま、メールを送信してます", data);
+    console.log("ただいま、メールを送信してます");
     // const url = "http://127.0.0.1:8000/start";
     const url = "https://hartlink-api.onrender.com/start";
 
     fetch(url, {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
     })
       .then((response) => {
         if (!response.ok) {
@@ -221,18 +218,15 @@ const Request = () => {
   };
 
   const testend = () => {
-    const data = { status: "end" }; // dataを正しい形式で設定
-
-    console.log("ただいま、メールを送信してます", data);
+    console.log("ただいま、メールを送信してます");
     // const url = "http://127.0.0.1:8000/end";
     const url = "https://hartlink-api.onrender.com/end";
 
     fetch(url, {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
     })
       .then((response) => {
         if (!response.ok) {
@@ -248,18 +242,15 @@ const Request = () => {
       });
   };
   const connectSend = () => {
-    const data = { status: "end" }; // dataを正しい形式で設定
-
-    console.log("ただいま、メールを送信してます", data);
+    console.log("ただいま、メールを送信してます");
     // const url = "http://127.0.0.1:8000/connect";
     const url = "https://hartlink-api.onrender.com/connect";
 
     fetch(url, {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
     })
       .then((response) => {
         if (!response.ok) {
@@ -275,18 +266,15 @@ const Request = () => {
       });
   };
   const reset = () => {
-    const data = { status: "end" }; // dataを正しい形式で設定
-
-    console.log("ただいま、メールを送信してます", data);
+    console.log("ただいま、メールを送信してます");
     // const url = "http://127.0.0.1:8000/reset";
     const url = "https://hartlink-api.onrender.com/reset";
 
     fetch(url, {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
     })
       .then((response) => {
         if (!response.ok) {
@@ -302,18 +290,15 @@ const Request = () => {
       });
   };
   const OK = () => {
-    const data = { status: "ok" }; // dataを正しい形式で設定
-
-    console.log("ただいま、メールを送信してます", data);
+    console.log("ただいま、メールを送信してます");
     // const url = "http://127.0.0.1:8000/ok";
     const url = "https://hartlink-api.onrender.com/ok";
 
     fetch(url, {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
     })
       .then((response) => {
         if (!response.ok) {
