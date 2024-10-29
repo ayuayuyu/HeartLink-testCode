@@ -313,6 +313,115 @@ const Request = () => {
         console.error("Error:", error);
       });
   };
+
+  const sendname1 = () => {
+    const data = { player: "1", name: "mizuno" }; // dataを正しい形式で設定
+
+    console.log("ただいま、メールを送信してます", data);
+    // const url = "http://127.0.0.1:8000/sendname";
+    const url = "https://hartlink-api.onrender.com/sendname";
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("ネットワーク応答が正常ではありません");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+  const sendname2 = () => {
+    const data = { player: "2", name: "tanaka" }; // dataを正しい形式で設定
+
+    console.log("ただいま、メールを送信してます", data);
+    // const url = "http://127.0.0.1:8000/sendname";
+    const url = "https://hartlink-api.onrender.com/sendname";
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("ネットワーク応答が正常ではありません");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+  const getname1 = () => {
+    const data = { player: "1" }; // dataを正しい形式で設定
+
+    console.log("ただいま、メールを送信してます", data);
+    // const url = "http://127.0.0.1:8000/getname";
+    const url = "https://hartlink-api.onrender.com/getname";
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("ネットワーク応答が正常ではありません");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+  const getname2 = () => {
+    const data = { player: "2" }; // dataを正しい形式で設定
+
+    console.log("ただいま、メールを送信してます", data);
+    // const url = "http://127.0.0.1:8000/getname";
+    const url = "https://hartlink-api.onrender.com/getname";
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("ネットワーク応答が正常ではありません");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
   return (
     <>
       <Button onClick={sendId1}>ID1_リクエスト</Button>
@@ -327,6 +436,10 @@ const Request = () => {
       <Button onClick={send}>リクエスト1</Button>
       <Button onClick={resend}>リクエスト2</Button>
       <Button onClick={reset}>リセット</Button>
+      <Button onClick={sendname1}>name1</Button>
+      <Button onClick={sendname2}>name2</Button>
+      <Button onClick={getname1}>player1</Button>
+      <Button onClick={getname2}>player2</Button>
     </>
   );
 };
