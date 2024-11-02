@@ -15,6 +15,7 @@ const WebSocket = () => {
   const url = `wss://hartlink-api.onrender.com/ws/${roomId}`;
 
   const [heartRate, setheartRate] = useState<HeartRate>();
+  const [test, setTest] = useState<HeartRate[]>([]);
   // const [heartRate, setheartRate] = useState<string>(" ");
   const socketRef = useRef<ReconnectingWebSocket>();
 
@@ -34,6 +35,8 @@ const WebSocket = () => {
       setheartRate(destr(event.data));
       // ここのログだとundefinedになってしまう
       console.log("heartRate: ", heartRate?.heartRate1);
+      // `setTest`には配列を渡すため、既存のtestに追加する形で設定
+      setTest((prev) => [...prev, event.data]);
     };
 
     return () => {
@@ -60,6 +63,14 @@ const WebSocket = () => {
       </p>
       <p>
         心拍数: {heartRate?.player2}:{heartRate?.heartRate2}
+      </p>
+      <p>
+        {test.map((req, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <p key={index}>
+            {req.player1}:{req.heartRate1}
+          </p>
+        ))}
       </p>
     </>
   );
