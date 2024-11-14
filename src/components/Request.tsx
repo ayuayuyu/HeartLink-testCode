@@ -8,9 +8,9 @@ const Request = () => {
 
     console.log("ただいま、メールを送信してます", data);
     // const url = "http://127.0.0.1:8000/status";
-    const url = "https://hartlink-api.onrender.com/status";
+    const url = "https://hartlink-api.onrender.com/getName";
 
-    fetch(r, {
+    fetch(url, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -31,8 +31,9 @@ const Request = () => {
   };
 
   const Ids = () => {
+    const url = "https://hartlink-api.onrender.com/id";
     const a = { id: "ayumu" };
-    fetch(i, {
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,8 +55,9 @@ const Request = () => {
       });
   };
   const Ids1 = () => {
+    const url = "https://hartlink-api.onrender.com/id";
     const a = { id: "inoue" };
-    fetch(i, {
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -77,9 +79,9 @@ const Request = () => {
       });
   };
   const sendId1 = () => {
-    const device = { id: "ayumu" };
-
-    fetch(u, {
+    const device = { player: "1", name: "ayumu" };
+    const url = "https://hartlink-api.onrender.com/sendname";
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -101,9 +103,9 @@ const Request = () => {
       });
   };
   const sendId2 = () => {
-    const device = { id: "inoue" };
+    const device = { player: "2", name: "inoue" };
     // const url = "http://127.0.0.1:8000/id";
-    const url = "https://hartlink-api.onrender.com/id";
+    const url = "https://hartlink-api.onrender.com/sendname";
 
     fetch(url, {
       method: "POST",
@@ -158,11 +160,11 @@ const Request = () => {
     const heartRate = Math.floor(Math.random() * (120 - 70 + 1)) + 70;
 
     const url = "https://hartlink-api.onrender.com/data";
-    const data = { heartRate: heartRate, player: "b" };
+    const data = { heartRate: String(heartRate), player: "inoue" };
 
     console.log("ただいま、メールを送信してます", data);
 
-    fetch(u, {
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -185,11 +187,11 @@ const Request = () => {
     // 70～120の範囲でランダムな数値を生成する関数
     const heartRate1 = Math.floor(Math.random() * (120 - 70 + 1)) + 70;
 
-    const data1 = { heartRate: heartRate1, player: "a" };
+    const data1 = { heartRate: String(heartRate1), player: "ayumu" };
 
     console.log("ただいま、メールを送信してます", data);
 
-    fetch(u, {
+    fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -497,24 +499,28 @@ const Request = () => {
   };
   return (
     <>
-      <Button onClick={Ids}>ID1</Button>
-      <Button onClick={Ids1}>ID2</Button>
-      <Button onClick={res}>reset</Button>
-      <Button onClick={sendId1}>ID1_リクエスト</Button>
-      <Button onClick={sendId2}>ID2_リクエスト</Button>
+      {/* //  
+      <Button onClick={res}>reset</Button> */}
+      <h1>
+        まず、ステップ1と2の順に押してから初めて、他に値が入っていたらリセットを押して
+      </h1>
+      <Button onClick={Ids}>ステップ1</Button>
+      <Button onClick={Ids1}>ステップ2</Button>
+      <Button onClick={sendId1}>ステップ3</Button>
+      <Button onClick={sendId2}>ステップ4</Button>
       <Button onClick={connectSend}>connect</Button>
       <Button onClick={okSend}>ok</Button>
       <Button onClick={OK}>OK</Button>
-      <Button onClick={startSend}>start</Button>
-      <Button onClick={teststart}>START</Button>
+      {/* <Button onClick={startSend}>start</Button>
+      <Button onClick={teststart}>START</Button> */}
       <Button onClick={endSend}>end</Button>
       <Button onClick={testend}>END</Button>
-      <Button onClick={a}>リクエスト</Button>
+      <Button onClick={a}>心拍を送るボタン</Button>
       <Button onClick={reset}>リセット</Button>
-      <Button onClick={sendname1}>name1</Button>
+      {/* <Button onClick={sendname1}>name1</Button>
       <Button onClick={sendname2}>name2</Button>
       <Button onClick={getname1}>player1</Button>
-      <Button onClick={getname2}>player2</Button>
+      <Button onClick={getname2}>player2</Button> */}
     </>
   );
 };
