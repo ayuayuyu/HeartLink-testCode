@@ -1,16 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import { useSearchParams } from "react-router-dom";
 import ReconnectingWebSocket from "reconnecting-websocket";
+import { Button } from "@chakra-ui/react";
 // ESM
 import { destr } from "destr";
 
 import { HeartRate } from "../types/type";
 
 const WebSocket = () => {
-  const [searchParams] = useSearchParams();
-  // const name = searchParams.get("name") || "";
-  const roomId = searchParams.get("roomId") || "";
-
   // const url = `ws://127.0.0.1:8000/ws/${roomId}`;
   const url = `wss://hartlink-api.onrender.com/ws`;
 
@@ -44,7 +41,7 @@ const WebSocket = () => {
         socketRef.current.close();
       }
     };
-  }, [roomId]);
+  }, []);
 
   //   const sendMessage = () => {
   //     if (heartRate.trim() && socketRef.current) {
@@ -54,9 +51,65 @@ const WebSocket = () => {
   //   setInterval(() => {
   //     sendMessage();
   //   }, 4000);
+  const index1 = () => {
+    const d1 = { index: heartRate?.index, player: "1" }; // dataを正しい形式で設定
+
+    console.log("ただいま、メールを送信してます", d1);
+    // const url = "http://127.0.0.1:8000/status";
+    const url = "https://hartlink-api.onrender.com/indexTopicId";
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(d1),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("ネットワーク応答が正常ではありません");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+  const index2 = () => {
+    const d1 = { index: heartRate?.index, player: "2" }; // dataを正しい形式で設定
+
+    console.log("ただいま、メールを送信してます", d1);
+    // const url = "http://127.0.0.1:8000/status";
+    const url = "https://hartlink-api.onrender.com/indexTopicId";
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(d1),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("ネットワーク応答が正常ではありません");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
 
   return (
     <>
+      <Button onClick={index1}>index1を送る</Button>
+      <Button onClick={index2}>index1を送る</Button>
       <h1>Hellow WebSocket</h1>
       <p>
         心拍数: {heartRate?.player1}:{heartRate?.heartRate1}
@@ -64,6 +117,8 @@ const WebSocket = () => {
       <p>
         心拍数: {heartRate?.player2}:{heartRate?.heartRate2}
       </p>
+      <p>topicid: {heartRate?.topicId}</p>
+      <p>index: {heartRate?.index}</p>
       <p>
         {test.map((req, index) => (
           // eslint-disable-next-line react/no-array-index-key
